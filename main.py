@@ -12,6 +12,9 @@ def main():
     # Initialize Screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     # Instantiate Player
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     # Game Loop
     while True:
@@ -23,9 +26,10 @@ def main():
                 return
         # Draw Game
         screen.fill("black")
-        # Draw Player
-        player.update(dt)
-        player.draw(screen)
+
+        updatable.update(dt)
+        for item in drawable:
+            item.draw(screen)
         # Flip Screen
         pygame.display.flip()
         # Game Tick
