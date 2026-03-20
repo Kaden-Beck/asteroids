@@ -34,10 +34,7 @@ def main():
     
     # Game Loop
     while True:
-        # Log State
         log_state()
-        
-        # Handle Events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
@@ -49,6 +46,11 @@ def main():
                 log_event("player_hit")
                 print("Game over!")
                 sys.exit()
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    log_event("asteroid_shot")
+                    asteroid.split()
+                    shot.kill()
             
         # Draw Game
         screen.fill("black")
@@ -59,7 +61,6 @@ def main():
         # Game Tick
         delta = game_clock.tick(60)
         dt = delta / 1000
-
 
 
 if __name__ == "__main__":

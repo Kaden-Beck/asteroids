@@ -39,14 +39,14 @@ class Player(CircleShape):
         self.cooldown -= dt
         # Rotational Movement
         if keys[pygame.K_a]:
-            self.rotate(dt * -1)
+            self.rotate(-dt)
         if keys[pygame.K_d]:
             self.rotate(dt)
         # Directional Movement
         if keys[pygame.K_w]:
             self.move(dt)
         if keys[pygame.K_s]:
-            self.move(dt * -1)
+            self.move(-dt)
         # Shoot
         if keys[pygame.K_SPACE]:
             if not self.cooldown > 0:
